@@ -9,8 +9,6 @@ void print(int *a,int n){
 	}
 	cout << endl;
 
-	a = NULL;
-
 }
 
 int main(){

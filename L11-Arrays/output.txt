@@ -1,9 +1,1 @@
-Comparing 5, 4
-Comparing 3, 5
-Comparing 3, 4
-Comparing 6, 5
-Comparing 2, 6
-Comparing 2, 5
-Comparing 2, 4
-Comparing 2, 3
-2 3 4 5 6 
+0 1 2 3 4 5 
