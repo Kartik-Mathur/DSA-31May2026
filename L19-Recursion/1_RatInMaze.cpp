@@ -17,7 +17,8 @@ bool ratInMaze(char maze[][5],int sol[][10],int i,int j,int n,int m){
 		}
 		cout << endl;
 
-		return true; // as we have reached destination to maze solved 
+		return false; // fool the recursion
+		// return true; // as we have reached destination to maze solved 
 	}
 
 	// recursive case
