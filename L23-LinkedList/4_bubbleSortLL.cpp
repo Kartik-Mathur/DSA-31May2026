@@ -44,8 +44,6 @@ int lengthLL(node* head){
 
 void bubbleSort(node* &head){
 	node* p, *c, *n;
-	
-
 	int len = lengthLL(head);
 	for (int i = 0; i < len - 1; ++i)
 	{
