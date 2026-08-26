@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class node{
@@ -71,11 +72,63 @@ node* searchKey(node* root,int key){
 	return x;
 }
 
+void levelOrderTraversal(node* root){
+	queue<node*> q;
+	q.push(root);
+	q.push(NULL);
 
+	while(!q.empty()){
+		node* x = q.front();
+		q.pop();
+		if(x != NULL){
+			cout << x -> data << " ";
+			if(x->left != NULL) q.push(x->left);
+			if(x->right != NULL) q.push(x->right);
+		}
+		else{
+			cout << endl;
+			if(!q.empty()) q.push(NULL);
+		}
+	}
+}
+
+node* levelOrderBuildTree(){
+	queue<node*> q;
+	int data ;
+	cin>> data;
+
+	if(data == -1){
+		return NULL;
+	}
+
+	node* root = new node(data);
+	q.push(root);
+
+	while(!q.empty()){
+		node* x = q.front();
+		q.pop();
+
+		int left, right;
+		cout << "Enter children of "<< x->data <<" : ";
+
+		cin>>left>>right;
+		if(left != -1){
+			x->left = new node(left);
+			q.push(x->left);
+		}
+		if(right != -1){
+			x->right = new node(right);
+			q.push(x->right);
+		}
+	}
+
+	return root;
+}
 // 8 10 1 -1 -1 6 4 -1 -1 7 -1 -1 3 -1 14 13 -1 -1 -1
 int main(){
 
-	node* root = buildTree();
+	// node* root = buildTree();
+	node* root = levelOrderBuildTree();
 
 	preorder(root);
 	cout << endl; 
@@ -84,16 +137,8 @@ int main(){
 	postorder(root);
 	cout << endl; 
 	
-	int key;
-	cin>>key;
-
-	node* ans = searchKey(root, key);
-	if(ans != NULL){
-		cout << ans -> data << endl;
-	}
-	else{
-		cout << "Key not found\n";
-	}
+	levelOrderTraversal(root);
+	
 
 	return 0;
 }

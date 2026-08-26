@@ -1,4 +1,5 @@
 #include <iostream>
+#include <queue>
 using namespace std;
 
 class node{
@@ -71,6 +72,36 @@ node* searchKey(node* root,int key){
 	return x;
 }
 
+void mirrorTree(node* root){
+	if(root == NULL){
+		return;
+	}
+
+	swap(root->left, root->right);
+	mirrorTree(root->left); // LST ko mirror recursion kar dega
+	mirrorTree(root->right); // RST ko mirror recursion kar dega
+}
+
+
+void levelOrderTraversal(node* root){
+	queue<node*> q;
+	q.push(root);
+	q.push(NULL);
+
+	while(!q.empty()){
+		node* x = q.front();
+		q.pop();
+		if(x != NULL){
+			cout << x -> data << " ";
+			if(x->left != NULL) q.push(x->left);
+			if(x->right != NULL) q.push(x->right);
+		}
+		else{
+			cout << endl;
+			if(!q.empty()) q.push(NULL);
+		}
+	}
+}
 
 // 8 10 1 -1 -1 6 4 -1 -1 7 -1 -1 3 -1 14 13 -1 -1 -1
 int main(){
@@ -94,6 +125,11 @@ int main(){
 	else{
 		cout << "Key not found\n";
 	}
+
+	levelOrderTraversal(root);
+	mirrorTree(root);
+	levelOrderTraversal(root);
+	
 
 	return 0;
 }
