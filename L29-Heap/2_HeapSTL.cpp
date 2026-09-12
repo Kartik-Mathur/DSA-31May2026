@@ -1,4 +1,5 @@
 #include <iostream>
+#include <functional> // greater<int>
 #include <queue> // heap is present inside this header file only
 using namespace std;
 
@@ -12,7 +13,9 @@ public:
 int main(){
 
 	// priority_queue<int> h; // MaxHeap
-	priority_queue<int, vector<int>, cmp> h; // MaxHeap
+	// priority_queue<int, vector<int>, cmp > h; // Min/Max
+	priority_queue<int, vector<int>, greater<int> > h; // MinHeap
+	// priority_queue<int, vector<int>, less<int> > h; // MaxHeap
 
 	h.push(11);
 	h.push(1);

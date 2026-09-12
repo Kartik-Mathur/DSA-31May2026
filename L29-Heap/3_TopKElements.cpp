@@ -22,18 +22,14 @@ int main(){
 	int cs = 0;
 	priority_queue<int, vector<int>, cmp> h; 
 
-
 	while(true){
 		int data;
 		cin>>data;
-
-
 		if(data == -1){
 			// Print topK elements
 			printHeap(h);
 		}
 		else{
-
 			if(cs < k){
 				h.push(data);
 				cs++;
@@ -44,10 +40,8 @@ int main(){
 					h.push(data);
 				}
 			}
-
 		}
 	}
-
 	return 0;
 }
 
