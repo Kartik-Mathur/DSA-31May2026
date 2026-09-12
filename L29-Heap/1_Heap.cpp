@@ -83,7 +83,7 @@ int main(){
 
 		h.pop();
 	}
-	cout << endl;
+	cout << endl; // heap sort -> O(n.logn);
 
 
 	return 0;
