@@ -100,6 +100,32 @@ public:
 			cout << endl;
 		}
 	}
+
+	node* search(string key){
+		int indx = hashFunction(key);
+
+		node* head=h[indx];
+		while(head != NULL){
+			if(head->key == key){
+				return head;
+			}
+
+			head = head->next;
+		}
+
+		return NULL;
+	}	
+
+	int& operator[](string key){
+		node* x = search(key);
+		if(x == NULL){
+			// key is not present inside hashmap
+			int garbage; // it contains garbage inside it
+			insert(key, garbage);
+			x = search(key); // insert ke baad milegi
+		}
+		return x->value;
+	}
 };
 
 int main(){
@@ -107,7 +133,10 @@ int main(){
 	hashmap h;
 
 	h.insert("Mango", 100);
-	h.insert("Apple", 150);
+	// h.insert("Apple", 150);
+	h["Apple"] = 150000; // insertion
+	h["Apple"] = 120; // update
+	cout << h["Apple"] << endl; // value -> 150
 	h.insert("Pineapple", 200);
 	h.insert("Kiwi", 140);
 	h.insert("Guava", 50);
