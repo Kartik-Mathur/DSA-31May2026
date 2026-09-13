@@ -29,7 +29,7 @@ void preorder(node* root){
 		return;
 	}
 
-	cout << root->data << ", ";
+	cout << root->data << " ";
 	preorder(root->left);
 	preorder(root->right);
 }
@@ -40,7 +40,7 @@ void inorder(node* root){
 	}
 
 	inorder(root->left);
-	cout << root->data << ", ";
+	cout << root->data << " ";
 	inorder(root->right);
 }
 
@@ -72,17 +72,6 @@ node* searchKey(node* root,int key){
 	return x;
 }
 
-void mirrorTree(node* root){
-	if(root == NULL){
-		return;
-	}
-
-	swap(root->left, root->right);
-	mirrorTree(root->left); // LST ko mirror recursion kar dega
-	mirrorTree(root->right); // RST ko mirror recursion kar dega
-}
-
-
 void levelOrderTraversal(node* root){
 	queue<node*> q;
 	q.push(root);
@@ -103,10 +92,71 @@ void levelOrderTraversal(node* root){
 	}
 }
 
+node* levelOrderBuildTree(){
+	queue<node*> q;
+	int data ;
+	cin>> data;
+
+	if(data == -1){
+		return NULL;
+	}
+
+	node* root = new node(data);
+	q.push(root);
+
+	while(!q.empty()){
+		node* x = q.front();
+		q.pop();
+
+		int left, right;
+		cout << "Enter children of "<< x->data <<" : ";
+
+		cin>>left>>right;
+		if(left != -1){
+			x->left = new node(left);
+			q.push(x->left);
+		}
+		if(right != -1){
+			x->right = new node(right);
+			q.push(x->right);
+		}
+	}
+
+	return root;
+}
+
+
+node* makeTree(int *pre, int &k, int *in, int s,int e){
+	// base case
+	if(s>e){
+		return NULL;
+	}
+
+	node* root = new node(pre[k++]);
+
+	int j;
+	for (int i = s; i <= e; ++i)
+	{
+		if(in[i] == root->data){
+			j = i;
+			break;
+		}
+	}
+
+	root->left = makeTree(pre,k, in, s, j-1);
+	root->right = makeTree(pre,k, in, j+1, e);
+
+	return root;
+}
 // 8 10 1 -1 -1 6 4 -1 -1 7 -1 -1 3 -1 14 13 -1 -1 -1
 int main(){
 
-	node* root = buildTree();
+	// node* root = buildTree();
+	int pre[] = {8, 10, 1, 6, 4, 7, 3, 14, 13};
+	int n = sizeof(pre)/sizeof(int);
+	int in[] = {1, 10, 4, 6, 7, 8, 3, 13, 14};
+	int k = 0;
+	node* root = makeTree(pre, k, in, 0, n-1);
 
 	preorder(root);
 	cout << endl; 
@@ -115,21 +165,8 @@ int main(){
 	postorder(root);
 	cout << endl; 
 	
-	int key;
-	cin>>key;
-
-	node* ans = searchKey(root, key);
-	if(ans != NULL){
-		cout << ans -> data << endl;
-	}
-	else{
-		cout << "Key not found\n";
-	}
-
 	levelOrderTraversal(root);
-	mirrorTree(root);
-	levelOrderTraversal(root);
-
+	
 
 	return 0;
 }
