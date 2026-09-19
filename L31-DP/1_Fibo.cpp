@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstring> // memset
 #include <vector>
 using namespace std;
 
