@@ -1,0 +1,49 @@
+#include <iostream>
+using namespace std;
+
+int main(){
+
+	int a[] = {10, 9, 3, 5, 4, 11, 7, 8};
+	int n = sizeof(a)/sizeof(int);
+	int dp[1000];
+	for (int i = 0; i < 1000; ++i)
+	{
+		dp[i] = 1;
+	}
+	for (int i = 1; i < n; ++i)
+	{
+		for(int j = i - 1 ; j >= 0 ;j--){
+			if(a[j] < a[i]){
+				dp[i] = max(dp[i], dp[j]+1);
+			}
+		}
+	}
+
+	int ans = 1;
+	for (int i = 0; i < n; ++i)
+	{
+		cout << dp[i] << " ";
+		ans = max(ans, dp[i]);
+	}
+	cout << endl << ans << endl;
+
+
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
