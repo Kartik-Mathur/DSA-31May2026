@@ -23,6 +23,27 @@ public:
 			cout << endl;
 		}
 	}
+
+	void bfs(string src){
+		queue<string> q;
+		map<string, bool> visited;
+
+		visited[src] = true;
+		q.push(src);
+		while(!q.empty()){
+			auto f = q.front();
+			q.pop();
+			cout << f << " ";
+
+			for(auto ch: adj[f]){
+				if(!visited[ch]){
+					q.push(ch);
+					visited[ch] = true;
+				}
+			}
+		}
+		cout << endl;
+	}
 };
 
 int main(){
@@ -35,6 +56,7 @@ int main(){
 	g.addEdge("C","D");
 
 	g.print();
+	g.bfs("A");
 
 	return 0;
 }
