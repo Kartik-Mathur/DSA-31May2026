@@ -74,8 +74,7 @@ int main(){
 	board[32] = -2;
 	board[34] = -22;
 
-	Graph<int> g;
-		
+	Graph<int> g;	
 	for (int u = 0; u <= 36; ++u)
 	{
 		for (int dice = 1; dice <= 6; ++dice)
