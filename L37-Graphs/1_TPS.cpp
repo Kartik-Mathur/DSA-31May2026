@@ -26,7 +26,6 @@ public:
 
 	void tps_helper(string node, map<string,bool> &visited, list<string> &ans){
 		visited[node] = true;
-		
 		// Pehle saare bacho ka kaam karo
 		for(auto ch: adj[node]){
 			if(!visited[ch]){
@@ -51,7 +50,6 @@ public:
 			cout << e << " ";
 		}
 		cout << endl;
-
 	}
 };
 
