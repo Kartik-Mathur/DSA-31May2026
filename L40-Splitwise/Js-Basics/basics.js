@@ -1,7 +1,5 @@
 let a = 10;
-
 a = "hello";
-
 // Array
 a = [1, 2, 3, "Hello", "World", true, 10.11]; // hetrogenous array
 
